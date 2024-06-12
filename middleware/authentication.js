@@ -9,7 +9,7 @@ const authenticateUser = async (req, res, next) => {
             return res.status(401).json({ error: 'Access denied, no token provided' });
         }
 
-        const decoded = jwt.verify(token, process.env.SECERTKEY);
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
         const user = await User.findById(decoded.userId);
         if (!user) {
             return res.status(401).json({ error: 'Invalid token' });
